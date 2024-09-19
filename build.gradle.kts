@@ -42,6 +42,7 @@ dependencies {
     implementation("net.dv8tion:JDA:5.1.0")
     implementation("dev.arbjerg:lavaplayer:2.2.2")
     implementation("org.reflections:reflections:0.10.2")
+    implementation(kotlin("scripting-jsr223"))
 
     compileOnly("org.projectlombok:lombok")
 

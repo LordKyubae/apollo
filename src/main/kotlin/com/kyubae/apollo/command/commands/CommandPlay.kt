@@ -14,7 +14,6 @@ import java.io.InputStreamReader
 import java.nio.file.Files
 import kotlin.io.path.Path
 
-
 @SlashCommandInfo(name = "play", description = "Play a song", options = [SlashCommandInfo.Option(type = OptionType.STRING, name = "identifier", description = "The identifier of the song you want to play", required = true)])
 class CommandPlay : Command {
 
@@ -24,11 +23,15 @@ class CommandPlay : Command {
 
     override fun execute(event: SlashCommandInteractionEvent) {
         event.deferReply(false).queue()
+
         val id = event.getOption("identifier")!!.asString
         val url = "https://www.youtube.com/watch?v=$id"
         val file = "$DATA_DIRECTORY/$id"
+
         downloadFileIfNeeded(file, url)
+
         val musicManager: GuildMusicManager = getGuildAudioPlayer(event.channel.asTextChannel().guild)
+
         audioPlayerManager.loadItemOrdered(musicManager, "$file.mp3", DiscordAudioLoadResultHandler(event, musicManager, "$file.mp3"))
     }
 

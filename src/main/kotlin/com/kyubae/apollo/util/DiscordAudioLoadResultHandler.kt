@@ -15,15 +15,19 @@ class DiscordAudioLoadResultHandler(private val event: SlashCommandInteractionEv
 
     override fun trackLoaded(track: AudioTrack) {
         event.hook.sendMessage("Adding to queue " + track.info.title).queue()
+
         this.play(event.guild!!, musicManager, track)
     }
 
     override fun playlistLoaded(playlist: AudioPlaylist) {
         var firstTrack = playlist.selectedTrack
+
         if (firstTrack == null) {
             firstTrack = playlist.tracks[0]
         }
+
         event.hook.sendMessage("Adding to queue " + firstTrack.info.title + " (first track of playlist " + playlist.name + ")").queue()
+
         this.play(event.guild!!, musicManager, firstTrack)
     }
 
@@ -37,6 +41,7 @@ class DiscordAudioLoadResultHandler(private val event: SlashCommandInteractionEv
 
     private fun play(guild: Guild, musicManager: GuildMusicManager, track: AudioTrack) {
         this.connectToFirstVoiceChannel(guild.audioManager)
+
         musicManager.scheduler.queue(track)
     }
 

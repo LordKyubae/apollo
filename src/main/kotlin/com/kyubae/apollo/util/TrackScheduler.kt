@@ -31,6 +31,7 @@ class TrackScheduler(private val player: AudioPlayer) : AudioEventAdapter() {
 
     fun pause(): Boolean {
         player.isPaused = !player.isPaused
+
         return player.isPaused
     }
 

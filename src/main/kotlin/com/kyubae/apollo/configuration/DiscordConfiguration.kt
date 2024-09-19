@@ -17,12 +17,11 @@ class DiscordConfiguration {
 
     @Bean
     fun jda(): JDA {
-        return JDABuilder.createDefault(this.discordProperties.token)
-            .enableIntents(
-                GatewayIntent.GUILD_VOICE_STATES
-            ).addEventListeners(
-                ReadyEventListener(),
-                SlashCommandInteractionEventListener()
+        return JDABuilder.createDefault(this.discordProperties.token).enableIntents(
+            GatewayIntent.GUILD_MEMBERS
+        ).addEventListeners(
+            ReadyEventListener(),
+            SlashCommandInteractionEventListener()
         ).build()
     }
 
