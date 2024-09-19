@@ -5,19 +5,17 @@ import com.sedmelluq.discord.lavaplayer.tools.FriendlyException
 import com.sedmelluq.discord.lavaplayer.track.AudioPlaylist
 import com.sedmelluq.discord.lavaplayer.track.AudioTrack
 import net.dv8tion.jda.api.entities.Guild
-import net.dv8tion.jda.api.entities.channel.concrete.TextChannel
+import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent
 import net.dv8tion.jda.api.managers.AudioManager
 import org.springframework.boot.configurationprocessor.json.JSONObject
 import java.nio.file.Files
 import kotlin.io.path.Path
 
-class DiscordAudioLoadResultHandler(private val channel: TextChannel, private val musicManager: GuildMusicManager, private val trackUrl: String) : AudioLoadResultHandler {
+class DiscordAudioLoadResultHandler(private val event: SlashCommandInteractionEvent, private val musicManager: GuildMusicManager, private val trackUrl: String) : AudioLoadResultHandler {
 
     override fun trackLoaded(track: AudioTrack) {
-        track.userData = JSONObject(Files.readString(Path("$trackUrl.info.json")))
-
-        channel.sendMessage("Adding to queue " + (track.userData as JSONObject).getString("title")).queue()
-        this.play(channel.guild, musicManager, track)
+        event.hook.sendMessage("Adding to queue " + track.info.title).queue()
+        this.play(event.guild!!, musicManager, track)
     }
 
     override fun playlistLoaded(playlist: AudioPlaylist) {
@@ -25,17 +23,16 @@ class DiscordAudioLoadResultHandler(private val channel: TextChannel, private va
         if (firstTrack == null) {
             firstTrack = playlist.tracks[0]
         }
-        firstTrack.userData = JSONObject(Files.readString(Path("$trackUrl.info.json")))
-        channel.sendMessage("Adding to queue " + (firstTrack!!.userData as JSONObject).getString("title") + " (first track of playlist " + playlist.name + ")").queue()
-        this.play(channel.guild, musicManager, firstTrack)
+        event.hook.sendMessage("Adding to queue " + firstTrack.info.title + " (first track of playlist " + playlist.name + ")").queue()
+        this.play(event.guild!!, musicManager, firstTrack)
     }
 
     override fun noMatches() {
-        channel.sendMessage("Nothing found by $trackUrl").queue()
+        event.hook.sendMessage("Nothing found by $trackUrl").queue()
     }
 
     override fun loadFailed(exception: FriendlyException) {
-        channel.sendMessage("Could not play: " + exception.message).queue()
+        event.hook.sendMessage("Could not play: " + exception.message).queue()
     }
 
     private fun play(guild: Guild, musicManager: GuildMusicManager, track: AudioTrack) {

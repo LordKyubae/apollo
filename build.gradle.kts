@@ -41,6 +41,7 @@ dependencies {
     implementation("org.thymeleaf.extras:thymeleaf-extras-springsecurity6")
     implementation("net.dv8tion:JDA:5.1.0")
     implementation("dev.arbjerg:lavaplayer:2.2.2")
+    implementation("org.reflections:reflections:0.10.2")
 
     compileOnly("org.projectlombok:lombok")
 

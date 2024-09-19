@@ -17,13 +17,26 @@ class TrackScheduler(private val player: AudioPlayer) : AudioEventAdapter() {
         }
     }
 
-    fun nextTrack() {
+    fun next() {
         player.startTrack(queue.poll(), false)
+    }
+
+    fun stop() {
+        player.stopTrack()
+    }
+
+    fun current(): AudioTrack? {
+        return player.playingTrack
+    }
+
+    fun pause(): Boolean {
+        player.isPaused = !player.isPaused
+        return player.isPaused
     }
 
     override fun onTrackEnd(player: AudioPlayer, track: AudioTrack, endReason: AudioTrackEndReason) {
         if (endReason.mayStartNext) {
-            nextTrack()
+            next()
         }
     }
 

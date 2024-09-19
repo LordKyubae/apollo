@@ -1,6 +1,7 @@
 package com.kyubae.hermes.configuration
 
-import com.kyubae.hermes.util.DiscordEventListener
+import com.kyubae.hermes.util.listener.ReadyEventListener
+import com.kyubae.hermes.util.listener.SlashCommandInteractionEventListener
 import net.dv8tion.jda.api.JDA
 import net.dv8tion.jda.api.JDABuilder
 import net.dv8tion.jda.api.requests.GatewayIntent
@@ -14,16 +15,15 @@ class DiscordConfiguration {
     @Autowired
     private lateinit var discordProperties: DiscordProperties
 
-    @Autowired
-    private lateinit var applicationProperties: ApplicationProperties
-
-    private final val gatewayIntents = listOf(
-        GatewayIntent.MESSAGE_CONTENT
-    )
-
     @Bean
     fun jda(): JDA {
-        return JDABuilder.createDefault(this.discordProperties.token).enableIntents(this.gatewayIntents).addEventListeners(DiscordEventListener(applicationProperties)).build()
+        return JDABuilder.createDefault(this.discordProperties.token)
+            .enableIntents(
+                GatewayIntent.GUILD_VOICE_STATES
+            ).addEventListeners(
+                ReadyEventListener(),
+                SlashCommandInteractionEventListener()
+        ).build()
     }
 
 }
