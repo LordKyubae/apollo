@@ -25,6 +25,7 @@ repositories {
     mavenCentral()
     maven { url = uri("https://repo.spring.io/milestone") }
     maven { url = uri("https://repo.spring.io/snapshot") }
+    maven { url = uri("https://jitpack.io") }
 }
 
 dependencies {
@@ -38,6 +39,8 @@ dependencies {
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.thymeleaf.extras:thymeleaf-extras-springsecurity6")
+    implementation("net.dv8tion:JDA:5.1.0")
+    implementation("dev.arbjerg:lavaplayer:2.2.2")
 
     compileOnly("org.projectlombok:lombok")
 
