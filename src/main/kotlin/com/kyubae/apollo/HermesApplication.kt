@@ -1,7 +1,7 @@
-package com.kyubae.hermes
+package com.kyubae.apollo
 
-import com.kyubae.hermes.command.Command
-import com.kyubae.hermes.util.GuildMusicManager
+import com.kyubae.apollo.command.Command
+import com.kyubae.apollo.util.GuildMusicManager
 import com.sedmelluq.discord.lavaplayer.player.DefaultAudioPlayerManager
 import com.sedmelluq.discord.lavaplayer.source.AudioSourceManagers
 import net.dv8tion.jda.api.entities.Guild
@@ -9,7 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-class HermesApplication {
+class ApolloApplication {
 
     companion object {
 
@@ -40,5 +40,5 @@ class HermesApplication {
 }
 
 fun main(args: Array<String>) {
-    runApplication<HermesApplication>(*args)
+    runApplication<ApolloApplication>(*args)
 }

@@ -1,9 +1,9 @@
-package com.kyubae.hermes.command.commands
+package com.kyubae.apollo.command.commands
 
-import com.kyubae.hermes.HermesApplication.Companion.getGuildAudioPlayer
-import com.kyubae.hermes.command.Command
-import com.kyubae.hermes.command.SlashCommandInfo
-import com.kyubae.hermes.util.GuildMusicManager
+import com.kyubae.apollo.ApolloApplication.Companion.getGuildAudioPlayer
+import com.kyubae.apollo.command.Command
+import com.kyubae.apollo.command.SlashCommandInfo
+import com.kyubae.apollo.util.GuildMusicManager
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent
 
 @SlashCommandInfo(name = "pause", description = "Pause or unpause the player")

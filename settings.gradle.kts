@@ -6,4 +6,4 @@ pluginManagement {
     }
 }
 
-rootProject.name = "hermes"
+rootProject.name = "apollo"

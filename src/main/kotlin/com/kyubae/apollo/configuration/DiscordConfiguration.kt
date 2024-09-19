@@ -1,7 +1,7 @@
-package com.kyubae.hermes.configuration
+package com.kyubae.apollo.configuration
 
-import com.kyubae.hermes.util.listener.ReadyEventListener
-import com.kyubae.hermes.util.listener.SlashCommandInteractionEventListener
+import com.kyubae.apollo.util.listener.ReadyEventListener
+import com.kyubae.apollo.util.listener.SlashCommandInteractionEventListener
 import net.dv8tion.jda.api.JDA
 import net.dv8tion.jda.api.JDABuilder
 import net.dv8tion.jda.api.requests.GatewayIntent

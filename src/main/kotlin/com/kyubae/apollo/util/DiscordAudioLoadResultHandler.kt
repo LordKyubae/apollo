@@ -1,4 +1,4 @@
-package com.kyubae.hermes.util
+package com.kyubae.apollo.util
 
 import com.sedmelluq.discord.lavaplayer.player.AudioLoadResultHandler
 import com.sedmelluq.discord.lavaplayer.tools.FriendlyException

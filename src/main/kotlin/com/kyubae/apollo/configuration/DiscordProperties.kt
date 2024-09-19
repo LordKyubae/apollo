@@ -1,4 +1,4 @@
-package com.kyubae.hermes.configuration
+package com.kyubae.apollo.configuration
 
 import lombok.Data
 import org.springframework.boot.context.properties.ConfigurationProperties

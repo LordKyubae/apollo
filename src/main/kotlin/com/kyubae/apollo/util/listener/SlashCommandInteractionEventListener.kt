@@ -1,6 +1,6 @@
-package com.kyubae.hermes.util.listener
+package com.kyubae.apollo.util.listener
 
-import com.kyubae.hermes.HermesApplication.Companion.commands
+import com.kyubae.apollo.ApolloApplication.Companion.commands
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent
 import net.dv8tion.jda.api.hooks.ListenerAdapter
 

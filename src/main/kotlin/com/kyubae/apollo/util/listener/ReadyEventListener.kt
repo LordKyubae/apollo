@@ -1,8 +1,8 @@
-package com.kyubae.hermes.util.listener
+package com.kyubae.apollo.util.listener
 
-import com.kyubae.hermes.HermesApplication.Companion.commands
-import com.kyubae.hermes.command.Command
-import com.kyubae.hermes.command.SlashCommandInfo
+import com.kyubae.apollo.ApolloApplication.Companion.commands
+import com.kyubae.apollo.command.Command
+import com.kyubae.apollo.command.SlashCommandInfo
 import net.dv8tion.jda.api.events.session.ReadyEvent
 import net.dv8tion.jda.api.hooks.ListenerAdapter
 import net.dv8tion.jda.api.interactions.commands.build.Commands
@@ -13,7 +13,7 @@ import kotlin.reflect.full.primaryConstructor
 class ReadyEventListener : ListenerAdapter() {
 
     override fun onReady(event: ReadyEvent) {
-        val reflections = Reflections("com.kyubae.hermes.command.commands")
+        val reflections = Reflections("com.kyubae.apollo.command.commands")
         val commandClasses = reflections.getTypesAnnotatedWith(SlashCommandInfo::class.java)
 
         for (clazz in commandClasses) {

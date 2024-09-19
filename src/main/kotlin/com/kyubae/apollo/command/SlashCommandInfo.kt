@@ -1,4 +1,4 @@
-package com.kyubae.hermes.command
+package com.kyubae.apollo.command
 
 import net.dv8tion.jda.api.interactions.commands.OptionType
 
