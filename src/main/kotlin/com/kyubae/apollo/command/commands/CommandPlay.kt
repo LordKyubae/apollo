@@ -37,7 +37,7 @@ class CommandPlay : Command {
 
     private fun downloadFileIfNeeded(file: String, url: String) {
         if (!Files.exists(Path("$file.mp3"))) {
-            val command = listOf("yt-dlp.exe", "-x", "--audio-format", "mp3", "--audio-quality", "0", "-o", "$file.webm", url)
+            val command = listOf("yt-dlp.exe", "-x", "--audio-format", "mp3", "--audio-quality", "0", "--embed-metadata", "-o", "$file.webm", url)
             try {
                 val processBuilder = ProcessBuilder(command)
                 processBuilder.redirectErrorStream(true)

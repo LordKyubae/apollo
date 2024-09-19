@@ -13,6 +13,8 @@ import kotlin.reflect.full.primaryConstructor
 class ReadyEventListener : ListenerAdapter() {
 
     override fun onReady(event: ReadyEvent) {
+        println("https://discord.com/oauth2/authorize?client_id=1258744672990269452")
+
         val reflections = Reflections("com.kyubae.apollo.command.commands")
         val commandClasses = reflections.getTypesAnnotatedWith(SlashCommandInfo::class.java)
 

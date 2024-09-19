@@ -3,6 +3,7 @@ package com.kyubae.apollo.command.commands
 import com.kyubae.apollo.ApolloApplication.Companion.getGuildAudioPlayer
 import com.kyubae.apollo.command.Command
 import com.kyubae.apollo.command.SlashCommandInfo
+import com.kyubae.apollo.entity.MyUserData
 import com.kyubae.apollo.util.GuildMusicManager
 import com.sedmelluq.discord.lavaplayer.track.AudioTrack
 import com.sedmelluq.discord.lavaplayer.track.AudioTrackInfo
@@ -24,8 +25,22 @@ class CommandNowPlaying : Command {
         }
 
         val trackInfo: AudioTrackInfo = currentTrack.info
+        val userData: MyUserData = currentTrack.userData as MyUserData
 
-        event.hook.sendMessage(format("Currently playing: %s\nDuration: %s/%s", trackInfo.title, currentTrack.position, trackInfo.length)).queue()
+        event.hook.sendMessage(format("Currently playing: %s\nDuration: %s/%s\nRequester: <@%s>", trackInfo.title, formatMillis(currentTrack.position), formatMillis(trackInfo.length), userData.requester)).queue()
+    }
+
+    fun formatMillis(millis: Long): String {
+        val seconds = millis / 1000
+        val minutes = seconds / 60
+        val hours = minutes / 60
+        val displaySeconds = seconds % 60
+        val displayMinutes = minutes % 60
+        return if (hours > 0) {
+            String.format("%02d:%02d:%02d", hours, displayMinutes, displaySeconds)
+        } else {
+            String.format("%02d:%02d", displayMinutes, displaySeconds)
+        }
     }
 
 }

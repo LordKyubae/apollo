@@ -1,5 +1,6 @@
 package com.kyubae.apollo.util
 
+import com.kyubae.apollo.entity.MyUserData
 import com.sedmelluq.discord.lavaplayer.player.AudioLoadResultHandler
 import com.sedmelluq.discord.lavaplayer.tools.FriendlyException
 import com.sedmelluq.discord.lavaplayer.track.AudioPlaylist
@@ -40,6 +41,9 @@ class DiscordAudioLoadResultHandler(private val event: SlashCommandInteractionEv
     }
 
     private fun play(guild: Guild, musicManager: GuildMusicManager, track: AudioTrack) {
+        val userData = MyUserData(event.user.idLong);
+        track.userData = userData;
+
         this.connectToFirstVoiceChannel(guild.audioManager)
 
         musicManager.scheduler.queue(track)
